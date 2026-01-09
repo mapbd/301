@@ -592,6 +592,30 @@ section {
   overflow: hidden;
 }
 
+
+
+
+.projects .box-container .spotlight-group {
+  height: 40rem;
+  overflow: hidden;
+}
+
+.projects .box-container .spotlight-group .spotlight {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .projects .box-container .box .image img {
   height: 100%;
   width: 100%;
