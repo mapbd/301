@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>301m Bridge | Pirgonj</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+
+   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../css/style.css"/>
+
+    <link rel="stylesheet" href="css/leaflet.css"/>
+	 <script src="js/leaflet.js"></script>
+
+   <style>
+
+
+   #map {
+            height: 600px;
+            width: 100%;
+        }
+		#mydive{ 
+            position:absolute;
+            z-index:1;
+            bottom: 0;
+            right: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+   <!-- header section starts  -->
+
+   <header class="header">
+
+      <a href="index.html" class="logo">301m <span>Bridge</span></a>
+
+      <nav class="navbar">
+         <a href="../index.html">home</a>
+         <a href="../index.html#about">about</a>
+         <a href="../index.html#activities">activities</a>
+         <a href="index.html">map</a>
+         
+         <a href="../index.html#gallery">gallery</a>
+         <a href="../docs.html">document</a>
+         <a href="../index.html#contact">contact</a>
+      </nav>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <!-- <div id="info-btn" class="fas fa-info-circle" title="Click to See Contact Info"></div>
+         <div id="search-btn" class="fas fa-search" title="Click to See Search Box"></div>
+         <div id="login-btn" class="fas fa-user" title="Click to See Login Form"></div> -->
+         
+
+      </div>
+
+      <form action="" class="search-form">
+         <input type="search" name="" placeholder="search here..." id="search-box">
+         <label for="search-box" class="fas fa-search"></label>
+      </form>
+
+      <form action="" class="login-form">
+         <h3>login form</h3>
+         <input type="email" placeholder="enter your email" class="box">
+         <input type="password" placeholder="enter your password" class="box">
+         <div class="flex">
+            <input type="checkbox" name="" id="remember-me">
+            <label for="remember-me">remember me</label>
+            <a href="#">forgot password?</a>
+         </div>
+         <input type="submit" value="login now" class="btn">
+         <p>don't have an account <a href="#">create one!</a></p>
+      </form>
+
+   </header>
+
+   <div class="contact-info">
+
+      <div id="close-contact-info" class="fas fa-times"></div>
+
+      <div class="info">
+         <i class="fas fa-phone"></i>
+         <h3>phone number</h3>
+         <p>+</p>
+         <p>+</p>
+      </div>
+
+      <div class="info">
+         <i class="fas fa-envelope"></i>
+         <h3>email address</h3>
+         <p>@gmail.com</p>
+         <p>@gmail.com</p>
+      </div>
+
+      <div class="info">
+         <i class="fas fa-map-marker-alt"></i>
+         <h3>office address</h3>
+         <p></p>
+      </div>
+
+      <div class="share">
+         <a href="#" class="fab fa-facebook-f"></a>
+         <a href="#" class="fab fa-twitter"></a>
+         <a href="#" class="fab fa-instagram"></a>
+         <a href="#" class="fab fa-linkedin"></a>
+      </div>
+
+   </div>
+
+   <!-- header section ends -->
+
+
+
+   <div id='map'></div>
+
+
+   <!-- <div id="mydive"><a href='https://mapbd.github.io/web'><img height='24px' src='images/mapbd.png'/></a></div> -->
+
+
+
+
+
+
+
+
+
+   <!-- blogs section starts  -->
+
+
+
+ <section class="footer">
+
+      <!-- <div class="links">
+         <a class="btn" href="#home">home</a>
+         <a class="btn" href="#about">about</a>
+         <a class="btn" href="#services">services</a>
+         <a class="btn" href="#projects">projects</a>
+         <a class="btn" href="#pricing">pricing</a>
+         <a class="btn" href="#contact">contact</a>
+         <a class="btn" href="#blogs">blogs</a>
+      </div> -->
+
+      <div class="credit">Design by <a href="https://mapbd.github.io/web/" target="_blank"><span>MapBD</span></a></div>
+
+   </section>
+
+   <!-- footer section ends -->
+
+
+  
+
+   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+   <!-- custom js file link  -->
+   <script src="../js/script.js"></script>
+
+
+
+   <script>
+// const cities = L.layerGroup();
+// const mLittleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities);
+// const mDenver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities);
+// const mAurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities);
+// const mGolden = L.marker([89.2514401, 25.313373]).bindPopup('This is Golden, CO.').addTo(cities);
+
+const bridge = L.layerGroup();
+
+const road = L.layerGroup();
+
+const rivertraining = L.layerGroup();
+
+const rtraining = L.polyline( [ [ 89.2514401, 25.313373 ], [ 89.2514427, 25.3133815 ], [ 89.2514501, 25.3133921 ], [ 89.2514625, 25.3133972 ], [ 89.2514743, 25.3133981 ], [ 89.2514867, 25.3133954 ], [ 89.2515188, 25.3133724 ], [ 89.2516932, 25.3132487 ], [ 89.2519426, 25.3130984 ], [ 89.252353, 25.3129262 ], [ 89.2527634, 25.3127614 ], [ 89.2532596, 25.3126741 ], [ 89.2535815, 25.3126571 ], [ 89.2539543, 25.3126547 ], [ 89.254185, 25.3127104 ], [ 89.2545202, 25.3128414 ], [ 89.2547885, 25.3129335 ], [ 89.2551398, 25.3130062 ], [ 89.2554376, 25.3130935 ], [ 89.2557514, 25.3131639 ], [ 89.2560303, 25.3131833 ], [ 89.2562422, 25.3132245 ], [ 89.2564809, 25.3132317 ], [ 89.256666, 25.3132536 ], [ 89.2569128, 25.3133287 ], [ 89.2575082, 25.3133603 ], [ 89.2576745, 25.3133675 ], [ 89.257699, 25.3133663 ], [ 89.2577231, 25.3133599 ], [ 89.2577432, 25.3133521 ], [ 89.2577603, 25.3133384 ], [ 89.2577697, 25.3133163 ] ]).bindPopup('SPUR FOR RIVER').addTo(rivertraining);
+
+
+const mapbd = L.tileLayer('https://raw.githubusercontent.com/Birampur/tile-a/main/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	minZoom: 12,
+	attribution: ''
+});
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	minZoom: 12,
+	attribution: ''
+});
+
+const googleset = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
+	maxZoom: 19,
+	minZoom: 12,
+	attribution: ''
+});
+
+const map = L.map('map', {
+	center: [25.31408, 89.25761],
+	zoom: 15,
+	layers: [osm,bridge,road,  rtraining]
+});
+
+const baseLayers = {
+	'MapBD': mapbd,
+	'OSM': osm,
+	'Google': googleset
+};
+
+const overlays = {
+	// 'Cities': cities,
+    'Bridge' : bridge,
+    'Road' : road,
+    'River Training':rtraining
+    
+};
+
+const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+// const crownHill = L.marker([39.75, -105.09]).bindPopup('This is Crown Hill Park.');
+// const rubyHill = L.marker([39.68, -105.00]).bindPopup('This is Ruby Hill Park.');
+
+// const parks = L.layerGroup([crownHill, rubyHill]);
+
+// const openTopoMap = L.tileLayer('https://raw.githubusercontent.com/Birampur/tile-a/main/{z}/{x}/{y}.png', {
+// 	maxZoom: 19,
+// 	minZoom: 12,
+// 	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+// });
+// layerControl.addBaseLayer(openTopoMap, 'OpenTopoMap');
+layerControl.addOverlay(parks, 'Parks');
+
+
+
+
+
+
+map.zoomControl.setPosition('bottomleft');
+
+  var bounds_group = new L.featureGroup([]);
+  function setBounds() {
+  if (bounds_group.getLayers().length) {
+    map.fitBounds(bounds_group.getBounds());
+  }
+  map.setMaxBounds([[25.2903,89.1733],[25.4358,89.3525]]);
+}
+setBounds();
+
+
+</script>
+
+</body>
+
+</html>
